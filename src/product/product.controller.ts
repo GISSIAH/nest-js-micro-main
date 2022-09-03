@@ -11,8 +11,27 @@ export class ProductController {
     return this.productService.all();
   }
 
-  @EventPattern('HELLO')
-  async hello(data: string) {
-    console.log(data);
+  @EventPattern('product_created')
+  async productCreated(data) {
+    await this.productService.create({
+      id: data.id,
+      title: data.title,
+      image: data.image,
+      likes: data.likes,
+    });
+  }
+
+  @EventPattern('product_updated')
+  async productUpdated(data) {
+    await this.productService.update(data.id, {
+      title: data.title,
+      image: data.image,
+      likes: data.likes,
+    });
+  }
+
+  @EventPattern('product_deleted')
+  async productDeleted(id) {
+    await this.productService.delete(id);
   }
 }
