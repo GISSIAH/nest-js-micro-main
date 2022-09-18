@@ -1,3 +1,4 @@
+import { RabbitSubscribe } from '@golevelup/nestjs-rabbitmq';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
@@ -28,5 +29,14 @@ export class ProductService {
 
   async delete(id: number) {
     return this.productModel.deleteOne({ id });
+  }
+
+  @RabbitSubscribe({
+    exchange: 'exchange1',
+    routingKey: 'product_created',
+    queue: 'product-queue',
+  })
+  async listenerFn(msg: any) {
+    console.log(msg);
   }
 }

@@ -1,6 +1,7 @@
 {
   "author": "",
   "dependencies": {
+    "@golevelup/nestjs-rabbitmq": "^3.2.0",
     "@nestjs/common": "9.0.11",
     "@nestjs/core": "9.0.11",
     "@nestjs/microservices": "^9.0.11",
@@ -66,7 +67,7 @@
     "start:debug": "nest start --debug --watch",
     "start:dev": "nest start --watch",
     "start:prod": "node dist/main",
-    "listen":"nest start --watch --config listener.json",
+    "listen": "nest start --watch --config listener.json",
     "test": "jest",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
